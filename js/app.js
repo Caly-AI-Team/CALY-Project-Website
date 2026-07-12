@@ -57,7 +57,8 @@
       description: 'Three fine-tuned YOLO instance-segmentation models run together. A custom Mask-IoU ensemble removes duplicates, protects nested toppings, resolves conflicts, and fills missed regions.',
       points: ['Approximately 40,000 images across 220 food classes', '46 Egyptian food classes added for regional coverage', 'Pixel-level masks for multiple foods in the same meal'],
       tags: ['YOLOv8', 'YOLOv11', 'Instance Segmentation', 'Mask-IoU Ensemble'],
-      image: 'assets/images/Food-Recognition.png',
+      image: 'assets/images/Food-Recognition.webp',
+      fallbackImage: 'assets/images/Food-Recognition.png',
       alt: 'CALY food recognition ensemble workflow',
       label: 'Open food recognition diagram'
     },
@@ -67,7 +68,8 @@
       description: 'CALY detects a physical reference card, converts image scale into centimeters, creates a relative 3D depth map, and combines area, height, and food density to estimate mass.',
       points: ['CALY Reference Card: 8.9 × 5.4 cm', 'Depth Anything V2 for monocular height estimation', 'Class-specific density priors and Soft Clamping'],
       tags: ['Reference Calibration', 'Depth Anything V2', 'Volume', 'Food Density'],
-      image: 'assets/images/Portion-Estimation.png',
+      image: 'assets/images/Portion-Estimation.webp',
+      fallbackImage: 'assets/images/Portion-Estimation.png',
       alt: 'CALY full meal image processing workflow',
       label: 'Open portion estimation diagram'
     },
@@ -77,7 +79,8 @@
       description: 'A four-layer pipeline cleans messy input, extracts food entities with Qwen2.5-7B, canonicalizes names, and estimates grams through deterministic logic — keeping language intelligence separate from nutritional mathematics.',
       points: ['Supports Arabic, Egyptian dialect, Franco-Arabic, English, and mixed input', 'Handles vague portions, modifiers, additions, exclusions, and informal food names', 'Prevents numerical hallucinations by design'],
       tags: ['Qwen2.5-7B', 'Entity Extraction', 'Canonicalization', 'Deterministic Grams'],
-      image: 'assets/images/Food-Description.png',
+      image: 'assets/images/Food-Description.webp',
+      fallbackImage: 'assets/images/Food-Description.png',
       alt: 'CALY natural language food understanding architecture',
       label: 'Open food description diagram'
     },
@@ -87,7 +90,8 @@
       description: 'CALY compares consumed nutrition with personalized daily targets, classifies each macro state, identifies the food contributing most to the imbalance, then asks Gemini to format concise guidance.',
       points: ['Targets based on profile, activity, and goal', 'Deterministic status and top-contributor analysis', 'Two-sentence, mobile-friendly personalized response'],
       tags: ['Daily Targets', 'Top Contributor', 'Gemini', 'Guardrailed Output'],
-      image: 'assets/images/Recomendation.png',
+      image: 'assets/images/Recomendation.webp',
+      fallbackImage: 'assets/images/Recomendation.png',
       alt: 'CALY personalized recommendation workflow',
       label: 'Open recommendation diagram'
     },
@@ -97,7 +101,8 @@
       description: 'A Flutter application connects to a FastAPI service layer that manages authentication, user profiles, meals, images, nutritional calculations, AI inference, and recommendation delivery.',
       points: ['Feature-oriented Flutter application architecture', 'Service-oriented FastAPI backend with a relational data model', 'Cloud image storage and hosted AI services'],
       tags: ['Flutter', 'FastAPI', 'Supabase', 'Cloudinary', 'Docker'],
-      image: 'assets/images/Integrated-platform.png',
+      image: 'assets/images/Integrated-platform.webp',
+      fallbackImage: 'assets/images/Integrated-platform.png',
       alt: 'Complete CALY backend architecture',
       label: 'Open integrated platform diagram'
     }
@@ -112,18 +117,178 @@
   const moduleDescription = document.querySelector('#module-description');
   const modulePoints = document.querySelector('#module-points');
   const moduleTags = document.querySelector('#module-tags');
+  const technologySection = document.querySelector('#technology');
+  const moduleTabsScroll = document.querySelector('.module-tabs-scroll');
+  const moduleTabsList = document.querySelector('.module-tabs');
+  const moduleTabsHint = document.querySelector('.module-tabs-hint');
+  const imagePreloadCache = new Map();
+  let moduleSwitchToken = 0;
+  let moduleLoadingTimer = 0;
+  let tabScrollFrame = 0;
+  let tabHintDismissed = false;
 
-  const activateModule = (button, moveFocus = false) => {
-    const module = modules[button?.dataset.module];
-    if (!button || !module || !modulePanel || !moduleImage || !moduleVisual || !moduleKicker || !moduleTitle || !moduleDescription || !modulePoints || !moduleTags) return;
+  const loadDecodedImage = source => new Promise((resolve, reject) => {
+    const image = new Image();
+    image.decoding = 'async';
+    image.onload = async () => {
+      try {
+        if (typeof image.decode === 'function') await image.decode();
+        resolve(source);
+      } catch (error) {
+        reject(error);
+      }
+    };
+    image.onerror = () => reject(new Error(`Unable to load image: ${source}`));
+    image.src = source;
+  });
 
-    moduleTabs.forEach(tab => {
-      const active = tab === button;
-      tab.classList.toggle('is-active', active);
-      tab.setAttribute('aria-selected', String(active));
-      tab.tabIndex = active ? 0 : -1;
+  const preloadImage = (source, fallbackSource = '') => {
+    if (!source) return Promise.resolve(null);
+    const cached = imagePreloadCache.get(source);
+    if (cached) return cached;
+
+    const promise = loadDecodedImage(source)
+      .catch(() => fallbackSource && fallbackSource !== source ? loadDecodedImage(fallbackSource) : null)
+      .then(finalSource => {
+        if (!finalSource) return null;
+        const ready = Promise.resolve(finalSource);
+        imagePreloadCache.set(source, ready);
+        imagePreloadCache.set(finalSource, ready);
+        return finalSource;
+      })
+      .catch(() => null);
+
+    imagePreloadCache.set(source, promise);
+    return promise;
+  };
+
+  const registerInitialModuleImage = () => {
+    if (!moduleImage || !moduleVisual) return;
+    const initialModule = modules.vision;
+
+    const initialPromise = new Promise(resolve => {
+      let settled = false;
+
+      const cleanup = () => {
+        moduleImage.removeEventListener('load', handleLoad);
+        moduleImage.removeEventListener('error', handleError);
+      };
+
+      const finish = source => {
+        if (settled) return;
+        settled = true;
+        cleanup();
+        if (source) {
+          const ready = Promise.resolve(source);
+          imagePreloadCache.set(initialModule.image, ready);
+          imagePreloadCache.set(source, ready);
+          moduleVisual.dataset.full = source;
+        }
+        resolve(source || null);
+      };
+
+      const useFallback = () => {
+        if (moduleImage.getAttribute('src') === initialModule.fallbackImage) {
+          finish(null);
+          return;
+        }
+        moduleImage.src = initialModule.fallbackImage;
+        moduleVisual.dataset.full = initialModule.fallbackImage;
+      };
+
+      async function handleLoad() {
+        try {
+          if (typeof moduleImage.decode === 'function') await moduleImage.decode();
+          finish(moduleImage.getAttribute('src'));
+        } catch (error) {
+          useFallback();
+        }
+      }
+
+      function handleError() {
+        useFallback();
+      }
+
+      moduleImage.addEventListener('load', handleLoad);
+      moduleImage.addEventListener('error', handleError);
+
+      if (moduleImage.complete) {
+        queueMicrotask(() => {
+          if (moduleImage.naturalWidth > 0) handleLoad();
+          else handleError();
+        });
+      }
     });
 
+    imagePreloadCache.set(initialModule.image, initialPromise);
+  };
+
+  const preloadAllModuleImages = () => {
+    Object.values(modules).forEach(module => {
+      preloadImage(module.image, module.fallbackImage);
+    });
+  };
+
+  registerInitialModuleImage();
+
+  if (technologySection) {
+    if ('IntersectionObserver' in window) {
+      const modulePreloadObserver = new IntersectionObserver(entries => {
+        if (!entries.some(entry => entry.isIntersecting)) return;
+        preloadAllModuleImages();
+        modulePreloadObserver.disconnect();
+      }, { rootMargin: '800px 0px', threshold: 0 });
+      modulePreloadObserver.observe(technologySection);
+    } else {
+      preloadAllModuleImages();
+    }
+  }
+
+  const updateModuleTabScrollState = () => {
+    tabScrollFrame = 0;
+    if (!moduleTabsScroll || !moduleTabsList) return;
+    const tolerance = 2;
+    const overflows = moduleTabsList.scrollWidth > moduleTabsList.clientWidth + tolerance;
+    const canScrollLeft = overflows && moduleTabsList.scrollLeft > tolerance;
+    const canScrollRight = overflows && moduleTabsList.scrollLeft + moduleTabsList.clientWidth < moduleTabsList.scrollWidth - tolerance;
+
+    moduleTabsScroll.classList.toggle('can-scroll-left', canScrollLeft);
+    moduleTabsScroll.classList.toggle('can-scroll-right', canScrollRight);
+    if (moduleTabsHint) moduleTabsHint.hidden = !overflows || tabHintDismissed;
+  };
+
+  const scheduleModuleTabScrollState = () => {
+    if (tabScrollFrame) return;
+    tabScrollFrame = requestAnimationFrame(updateModuleTabScrollState);
+  };
+
+  const dismissModuleTabHint = () => {
+    tabHintDismissed = true;
+    scheduleModuleTabScrollState();
+  };
+
+  const keepModuleTabVisible = button => {
+    if (!moduleTabsList || !button || moduleTabsList.scrollWidth <= moduleTabsList.clientWidth + 2) return;
+    const target = button.offsetLeft - (moduleTabsList.clientWidth - button.offsetWidth) / 2;
+    const maxScroll = moduleTabsList.scrollWidth - moduleTabsList.clientWidth;
+    moduleTabsList.scrollTo({
+      left: Math.min(Math.max(target, 0), maxScroll),
+      behavior: prefersReducedMotion() ? 'auto' : 'smooth'
+    });
+    scheduleModuleTabScrollState();
+  };
+
+  if (moduleTabsList) {
+    moduleTabsList.addEventListener('scroll', scheduleModuleTabScrollState, { passive: true });
+    moduleTabsList.addEventListener('pointerdown', dismissModuleTabHint, { passive: true });
+    moduleTabsList.addEventListener('wheel', dismissModuleTabHint, { passive: true });
+    window.addEventListener('resize', scheduleModuleTabScrollState);
+    requestAnimationFrame(updateModuleTabScrollState);
+    if (document.fonts?.ready) document.fonts.ready.then(scheduleModuleTabScrollState).catch(() => {});
+  }
+
+  const updateModuleContent = (button, module, finalSource) => {
+    if (!modulePanel || !moduleImage || !moduleVisual || !moduleKicker || !moduleTitle || !moduleDescription || !modulePoints || !moduleTags) return;
     moduleKicker.textContent = module.kicker;
     moduleTitle.textContent = module.title;
     moduleDescription.textContent = module.description;
@@ -137,24 +302,61 @@
       tagElement.textContent = tag;
       return tagElement;
     }));
-    moduleImage.src = module.image;
+    moduleImage.src = finalSource;
     moduleImage.alt = module.alt;
-    moduleVisual.dataset.full = module.image;
+    moduleImage.dataset.fallback = module.fallbackImage;
+    moduleVisual.dataset.full = finalSource;
+    moduleVisual.dataset.fallback = module.fallbackImage;
     moduleVisual.setAttribute('aria-label', module.label);
     modulePanel.setAttribute('aria-labelledby', button.id);
+  };
+
+  const activateModule = async (button, moveFocus = false) => {
+    const module = modules[button?.dataset.module];
+    if (!button || !module || !modulePanel || !moduleImage || !moduleVisual) return;
+    const switchToken = ++moduleSwitchToken;
+
+    moduleTabs.forEach(tab => {
+      const active = tab === button;
+      tab.classList.toggle('is-active', active);
+      tab.setAttribute('aria-selected', String(active));
+      tab.tabIndex = active ? 0 : -1;
+    });
+
     if (moveFocus) button.focus();
+    keepModuleTabVisible(button);
+    window.clearTimeout(moduleLoadingTimer);
+    modulePanel.classList.remove('is-loading');
+    modulePanel.classList.remove('is-changing');
+    moduleLoadingTimer = window.setTimeout(() => {
+      if (switchToken === moduleSwitchToken) modulePanel.classList.add('is-loading');
+    }, 120);
+
+    const finalSource = await preloadImage(module.image, module.fallbackImage);
+    if (switchToken !== moduleSwitchToken) return;
+
+    window.clearTimeout(moduleLoadingTimer);
+    modulePanel.classList.remove('is-loading');
+    if (!finalSource) return;
+
+    modulePanel.classList.add('is-changing');
+    updateModuleContent(button, module, finalSource);
+    requestAnimationFrame(() => {
+      if (switchToken === moduleSwitchToken) modulePanel.classList.remove('is-changing');
+    });
   };
 
   moduleTabs.forEach((button, index) => {
     button.addEventListener('click', () => activateModule(button));
     button.addEventListener('keydown', event => {
       let nextIndex = null;
-      if (event.key === 'ArrowRight' || event.key === 'ArrowDown') nextIndex = (index + 1) % moduleTabs.length;
-      if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') nextIndex = (index - 1 + moduleTabs.length) % moduleTabs.length;
+      if (event.key === 'ArrowRight') nextIndex = (index + 1) % moduleTabs.length;
+      if (event.key === 'ArrowLeft') nextIndex = (index - 1 + moduleTabs.length) % moduleTabs.length;
       if (event.key === 'Home') nextIndex = 0;
       if (event.key === 'End') nextIndex = moduleTabs.length - 1;
       if (nextIndex === null) return;
       event.preventDefault();
+      dismissModuleTabHint();
       activateModule(moduleTabs[nextIndex], true);
     });
   });
@@ -275,12 +477,18 @@
       lightbox.hidden = false;
       document.body.classList.add('lightbox-open');
       zoomLevel = 1;
+      lightboxImage.dataset.fallback = trigger.dataset.fallback || '';
       lightboxImage.src = source;
       if (lightboxImage.complete && lightboxImage.naturalWidth) requestAnimationFrame(resetZoom);
       closeButton.focus();
     };
 
     lightboxImage?.addEventListener('load', resetZoom);
+    lightboxImage?.addEventListener('error', () => {
+      const fallbackSource = lightboxImage.dataset.fallback;
+      if (!fallbackSource || lightboxImage.getAttribute('src') === fallbackSource) return;
+      lightboxImage.src = fallbackSource;
+    });
     lightboxImage?.setAttribute('draggable', 'false');
 
     document.addEventListener('click', event => {

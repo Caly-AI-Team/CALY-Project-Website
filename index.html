@@ -153,6 +153,7 @@
 <p>The interface is simple because the engineering behind it is not. Each meal moves through specialized AI, mathematical, and software layers.</p>
 </div>
 <div class="module-shell reveal">
+<div class="module-tabs-scroll">
 <div aria-label="CALY system modules" class="module-tabs" role="tablist">
 <button aria-controls="module-panel" aria-selected="true" class="module-tab is-active" data-module="vision" id="module-tab-vision" role="tab" tabindex="0" type="button">Food recognition</button>
 <button aria-controls="module-panel" aria-selected="false" class="module-tab" data-module="portion" id="module-tab-portion" role="tab" tabindex="-1" type="button">Portion estimation</button>
@@ -160,6 +161,8 @@
 <button aria-controls="module-panel" aria-selected="false" class="module-tab" data-module="recommendation" id="module-tab-recommendation" role="tab" tabindex="-1" type="button">Recommendations</button>
 <button aria-controls="module-panel" aria-selected="false" class="module-tab" data-module="platform" id="module-tab-platform" role="tab" tabindex="-1" type="button">Integrated platform</button>
 </div>
+</div>
+<p class="module-tabs-hint" hidden>Swipe to explore all systems <span aria-hidden="true">→</span></p>
 <article aria-labelledby="module-tab-vision" class="module-panel" id="module-panel" role="tabpanel" tabindex="0">
 <div class="module-panel__copy">
 <span class="module-kicker" id="module-kicker">Computer Vision</span>
@@ -172,8 +175,9 @@
 </ul>
 <div class="module-tags" id="module-tags"><span>YOLOv8</span><span>YOLOv11</span><span>Instance Segmentation</span><span>Mask-IoU Ensemble</span></div>
 </div>
-<button aria-label="Open food recognition diagram" class="module-panel__visual lightbox-trigger" data-full="assets/images/Food-Recognition.png" type="button">
-<img alt="CALY food recognition ensemble workflow" id="module-image" src="assets/images/Food-Recognition.png"/>
+<button aria-label="Open food recognition diagram" class="module-panel__visual lightbox-trigger" data-fallback="assets/images/Food-Recognition.png" data-full="assets/images/Food-Recognition.webp" type="button">
+<img alt="CALY food recognition ensemble workflow" data-fallback="assets/images/Food-Recognition.png" decoding="async" height="1254" id="module-image" src="assets/images/Food-Recognition.webp" width="1254"/>
+<span aria-hidden="true" class="module-panel__loader"></span>
 </button>
 </article>
 </div>
@@ -212,7 +216,7 @@
 <div><span>✓</span><p><strong>Daily dashboard</strong>Calories, protein, carbohydrates, and fat progress.</p></div>
 <div><span>✓</span><p><strong>Meal control</strong>Review, edit, delete, and save meals as favorites.</p></div>
 </div>
-<a class="text-link lightbox-trigger" data-full="assets/app/Explore all interface screens.jpg" href="assets/app/Explore all interface screens.jpg">Explore all interface screens <span>↗</span></a>
+<a class="text-link lightbox-trigger" data-fallback="assets/app/Explore all interface screens.jpg" data-full="assets/app/Explore all interface screens.webp" href="assets/app/Explore all interface screens.webp">Explore all interface screens <span>↗</span></a>
 </div>
 <div aria-label="CALY mobile application experience" class="app-showcase reveal">
 <img alt="CALY mobile application interface experience" class="app-showcase__image" src="assets/app/The-mobile-experience.png"/>
