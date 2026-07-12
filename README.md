@@ -16,9 +16,8 @@ This repository contains the official website for the CALY graduation project. T
 
 The CALY Android beta is distributed through GitHub Releases.
 
-[Download the Latest CALY Beta](https://github.com/YOUR-USERNAME/caly-android-releases/releases/latest/download/CALY-Beta.apk)
+[Download the Latest CALY Beta](https://github.com/Caly-AI-Team/CALY-Android-APK-Releases/releases/latest/download/CALY-Beta.apk)
 
-Replace `YOUR-USERNAME` with your GitHub username.
 
 ## About CALY
 
@@ -145,7 +144,7 @@ CALY-Project-Website-V4
 │
 ├── assets
 │   ├── app
-│   │   ├── Explore all interface screens.jpg
+│   │   ├── Explore all interface screens.webp
 │   │   ├── Home screen with cards.jpg
 │   │   ├── The-mobile-experience.png
 │   │   ├── home-dashboard.jpg
@@ -166,11 +165,11 @@ CALY-Project-Website-V4
 │   │   └── README.txt
 │   │
 │   └── images
-│       ├── Food-Description.png
-│       ├── Food-Recognition.png
-│       ├── Integrated-platform.png
-│       ├── Portion-Estimation.png
-│       ├── Recomendation.png
+│       ├── Food-Description.webp
+│       ├── Food-Recognition.webp
+│       ├── Integrated-platform.webp
+│       ├── Portion-Estimation.webp
+│       ├── Recomendation.webp
 │       └── hero-image.png
 │
 ├── css
