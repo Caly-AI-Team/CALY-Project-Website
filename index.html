@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="#2c6e49" name="theme-color"/>
+<meta content="CALY is a multimodal AI nutrition system for food recognition, portion estimation, nutritional analysis, and personalized recommendations." name="description"/>
+<meta content="CALY — Multimodal AI Nutrition Intelligence" property="og:title"/>
+<meta content="Snap a meal or describe it. CALY recognizes food, estimates portions, calculates nutrition, and gives personalized guidance." property="og:description"/>
+<meta content="website" property="og:type"/>
+<meta content="assets/images/hero-image.png" property="og:image"/>
+<title>CALY — Multimodal AI Nutrition Intelligence</title>
+<link href="assets/brand/caly-icon.svg" rel="icon" type="image/svg+xml"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="css/styles.css" rel="stylesheet"/>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header" id="top">
+<div class="container nav-shell">
+<a aria-label="CALY home" class="brand" href="#top">
+<img alt="CALY app icon" src="assets/brand/caly-icon.svg"/>
+</a>
+<button aria-controls="primary-nav" aria-expanded="false" aria-label="Open navigation" class="nav-toggle" type="button">
+<span></span><span></span><span></span>
+</button>
+<nav aria-label="Primary navigation" class="primary-nav" id="primary-nav">
+<a href="#overview">Overview</a>
+<a href="#features">Features</a>
+<a href="#technology">Technology</a>
+<a href="#results">Results</a>
+<a href="#app">Mobile App</a>
+<a href="#team">Team</a>
+<a class="button button--small" href="#download">Try the Beta</a>
+</nav>
+</div>
+</header>
+<main id="main">
+<section aria-labelledby="hero-title" class="hero section">
+<div class="container hero-grid">
+<div class="hero-copy reveal"><img alt="CALY — Snap. Track. Shape Your Future." class="hero-logo" src="assets/brand/caly-logo.svg"/>
+<div class="eyebrow"><span></span> Multimodal AI Nutrition Intelligence</div>
+<h1 id="hero-title">Your meal tells a story.<br/><em>CALY understands it.</em></h1>
+<p class="hero-lead">CALY turns a meal photo or a natural-language description into recognized foods, estimated portions, nutritional values, and personalized daily guidance — inside one connected mobile experience.</p>
+<div class="hero-actions">
+<a class="button" href="#overview">Explore CALY</a>
+<a class="button button--ghost" download href="assets/downloads/Caly%20v1.7.apk">Download Beta APK</a>
+</div>
+</div>
+<div class="hero-visual reveal"><div class="hero-media-frame"><img alt="CALY nutrition intelligence mobile experience" class="hero-media-frame__image" src="assets/images/hero-image.png"/></div></div>
+</div>
+</section>
+<section aria-label="CALY technology stack" class="trust-strip">
+<div class="container trust-list">
+<span>YOLO</span><i></i><span>Depth Anything V2</span><i></i><span>Qwen 2.5</span><i></i><span>Gemini</span><i></i><span>Flutter</span><i></i><span>FastAPI</span><i></i><span>Supabase</span>
+</div>
+</section>
+<section aria-labelledby="overview-title" class="section" id="overview">
+<div class="container">
+<div class="section-heading section-heading--split reveal">
+<div>
+<div class="eyebrow"><span></span> Why CALY</div>
+<h2 id="overview-title">Calorie tracking should not feel like homework.</h2>
+</div>
+<p>Traditional tracking asks people to separate every ingredient, weigh it, search a database, calculate nutrition, and repeat the entire process for every meal. That friction is exactly what CALY was built to remove.</p>
+</div>
+<div class="problem-grid">
+<article class="challenge-panel reveal">
+<span class="mini-label">The challenge</span>
+<h3>Traditional tracking asks too much from the user.</h3>
+<p>Every meal can turn into a long sequence of manual decisions before it is ever recorded.</p>
+<div class="pain-list">
+<div><span>01</span><p>Separate every food item and ingredient.</p></div>
+<div><span>02</span><p>Estimate or measure each portion manually.</p></div>
+<div><span>03</span><p>Search nutritional databases item by item.</p></div>
+<div><span>04</span><p>Calculate calories and macronutrients repeatedly.</p></div>
+</div>
+</article>
+<div class="solution-panel reveal">
+<div class="solution-panel__top">
+<span class="mini-label">The CALY shift</span>
+<h3>From manual steps to one intelligent workflow.</h3>
+</div>
+<div aria-label="Traditional calorie tracking compared with CALY" class="before-after">
+<div class="before-after__column before-after__column--before">
+<span>Before</span>
+<ol>
+<li>High effort for every meal</li>
+<li>Slow and repetitive logging</li>
+<li>Inconsistent portion estimates</li>
+<li>Low long-term adherence</li>
+</ol>
+</div>
+<div aria-hidden="true" class="before-after__arrow"><span>→</span></div>
+<div class="before-after__column before-after__column--after">
+<span>With CALY</span>
+<ol>
+<li>Snap or describe the meal</li>
+<li>Review detected ingredients</li>
+<li>Track nutrition automatically</li>
+<li>Receive personalized guidance</li>
+</ol>
+</div>
+</div>
+</div></div>
+</div>
+</section>
+<section aria-labelledby="features-title" class="section section--cream" id="features">
+<div class="container">
+<div class="section-heading section-heading--center reveal">
+<div class="eyebrow"><span></span> Three ways to log</div>
+<h2 id="features-title">Built around how people actually eat.</h2>
+<p>CALY supports different situations without forcing users into one rigid input method.</p>
+</div>
+<div class="feature-cards">
+<article class="feature-card feature-card--primary reveal">
+<div class="feature-card__icon">
+<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h2l1.2-2h7.6L17 5h2a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Zm9 10a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"></path></svg>
+</div>
+<span class="feature-card__number">01</span>
+<h3>Take a photo</h3>
+<p>CALY separates the foods on the plate, estimates each portion, calculates nutritional values, and records the meal.</p>
+</article>
+<article class="feature-card reveal">
+<div class="feature-card__icon feature-card__icon--orange">
+<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 4h16v12H7l-3 3V4Zm4 5h8M8 12h5"></path></svg>
+</div>
+<span class="feature-card__number">02</span>
+<h3>Describe your meal</h3>
+<p>Write naturally in Arabic, Egyptian dialect, Franco-Arabic, English, or mixed language. CALY structures the description into reliable food records.</p>
+</article>
+<article class="feature-card reveal">
+<div class="feature-card__icon feature-card__icon--cream">
+<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m12 3 2.8 5.7L21 9.6l-4.5 4.4 1.1 6.2L12 17.3l-5.6 2.9 1.1-6.2L3 9.6l6.2-.9L12 3Z"></path></svg>
+</div>
+<span class="feature-card__number">03</span>
+<h3>Log a favorite</h3>
+<p>Save meals you eat often and add them again in seconds — without repeating the full analysis workflow.</p>
+</article>
+</div>
+</div>
+</section>
+<section aria-labelledby="technology-title" class="section" id="technology">
+<div class="container">
+<div class="section-heading section-heading--split reveal">
+<div>
+<div class="eyebrow"><span></span> Inside the intelligence</div>
+<h2 id="technology-title">Five systems. One seamless experience.</h2>
+</div>
+<p>The interface is simple because the engineering behind it is not. Each meal moves through specialized AI, mathematical, and software layers.</p>
+</div>
+<div class="module-shell reveal">
+<div aria-label="CALY system modules" class="module-tabs" role="tablist">
+<button aria-controls="module-panel" aria-selected="true" class="module-tab is-active" data-module="vision" id="module-tab-vision" role="tab" tabindex="0" type="button">Food recognition</button>
+<button aria-controls="module-panel" aria-selected="false" class="module-tab" data-module="portion" id="module-tab-portion" role="tab" tabindex="-1" type="button">Portion estimation</button>
+<button aria-controls="module-panel" aria-selected="false" class="module-tab" data-module="language" id="module-tab-language" role="tab" tabindex="-1" type="button">Food description</button>
+<button aria-controls="module-panel" aria-selected="false" class="module-tab" data-module="recommendation" id="module-tab-recommendation" role="tab" tabindex="-1" type="button">Recommendations</button>
+<button aria-controls="module-panel" aria-selected="false" class="module-tab" data-module="platform" id="module-tab-platform" role="tab" tabindex="-1" type="button">Integrated platform</button>
+</div>
+<article aria-labelledby="module-tab-vision" class="module-panel" id="module-panel" role="tabpanel" tabindex="0">
+<div class="module-panel__copy">
+<span class="module-kicker" id="module-kicker">Computer Vision</span>
+<h3 id="module-title">Recognizing every item — not just the plate.</h3>
+<p id="module-description">Three fine-tuned YOLO instance-segmentation models run together. A custom Mask-IoU ensemble removes duplicates, protects nested toppings, resolves conflicts, and fills missed regions.</p>
+<ul id="module-points">
+<li>Approximately 40,000 images across 220 food classes</li>
+<li>46 Egyptian food classes added for regional coverage</li>
+<li>Pixel-level masks for multiple foods in the same meal</li>
+</ul>
+<div class="module-tags" id="module-tags"><span>YOLOv8</span><span>YOLOv11</span><span>Instance Segmentation</span><span>Mask-IoU Ensemble</span></div>
+</div>
+<button aria-label="Open food recognition diagram" class="module-panel__visual lightbox-trigger" data-full="assets/images/Food-Recognition.png" type="button">
+<img alt="CALY food recognition ensemble workflow" id="module-image" src="assets/images/Food-Recognition.png"/>
+</button>
+</article>
+</div>
+</div>
+</section>
+<section aria-labelledby="results-title" class="section section--dark" id="results">
+<div class="container">
+<div class="section-heading section-heading--split section-heading--light reveal">
+<div>
+<div class="eyebrow eyebrow--light"><span></span> Evaluated end to end</div>
+<h2 id="results-title">A research-scale system, measured like a product.</h2>
+</div>
+<p>CALY was evaluated across model performance, portion accuracy, language understanding, response time, and user experience.</p>
+</div>
+<div class="metrics-grid">
+<article class="metric-card reveal"><span class="metric-card__value" data-count="40000" data-format="compact">0</span><strong>Training images</strong><p>Curated and optimized for segmentation.</p></article>
+<article class="metric-card reveal"><span class="metric-card__value" data-count="220">0</span><strong>Food classes</strong><p>International and Egyptian dishes.</p></article>
+<article class="metric-card reveal"><span class="metric-card__value" data-count="0.505" data-decimals="3">0</span><strong>Best mAP@50</strong><p>YOLOv11 with smart augmentation.</p></article>
+<article class="metric-card metric-card--accent reveal"><span class="metric-card__value" data-count="14.5" data-decimals="1" data-suffix="%">0</span><strong>Portion MAPE</strong><p>Across 50 diverse test meals.</p></article>
+<article class="metric-card reveal"><span class="metric-card__value" data-count="95.2" data-decimals="1" data-suffix="%">0</span><strong>Entity extraction</strong><p>Natural food descriptions.</p></article>
+<article class="metric-card reveal"><span class="metric-card__value" data-count="92.9" data-decimals="1" data-suffix="%">0</span><strong>Text pipeline success</strong><p>End-to-end structured output.</p></article>
+<article class="metric-card reveal"><span class="metric-card__value">3.8–4.5s</span><strong>Full image workflow</strong><p>Measured over standard 4G/LTE.</p></article>
+<article class="metric-card reveal"><span class="metric-card__value" data-count="20">0</span><strong>Beta participants</strong><p>Seven-day user acceptance test.</p></article>
+</div>
+</div>
+</section>
+<section aria-labelledby="app-title" class="section" id="app">
+<div class="container app-grid">
+<div class="app-copy reveal">
+<div class="eyebrow"><span></span> The mobile experience</div>
+<h2 id="app-title">Complex intelligence, designed to feel effortless.</h2>
+<p>CALY's Flutter application brings onboarding, personalized plan creation, meal logging, daily tracking, meal management, and recommendations into one consistent interface.</p>
+<div class="app-checklist">
+<div><span>✓</span><p><strong>Personalized onboarding</strong>Age, gender, height, weight, activity level, and goal.</p></div>
+<div><span>✓</span><p><strong>Smart meal logging</strong>Camera, natural-language description, and favorites.</p></div>
+<div><span>✓</span><p><strong>Daily dashboard</strong>Calories, protein, carbohydrates, and fat progress.</p></div>
+<div><span>✓</span><p><strong>Meal control</strong>Review, edit, delete, and save meals as favorites.</p></div>
+</div>
+<a class="text-link lightbox-trigger" data-full="assets/app/Explore all interface screens.jpg" href="assets/app/Explore all interface screens.jpg">Explore all interface screens <span>↗</span></a>
+</div>
+<div aria-label="CALY mobile application experience" class="app-showcase reveal">
+<img alt="CALY mobile application interface experience" class="app-showcase__image" src="assets/app/The-mobile-experience.png"/>
+<div class="app-showcase__badge"><img alt="" src="assets/brand/caly-icon.svg"/><span><strong>Designed in Figma</strong>Built with Flutter</span></div>
+</div>
+</div>
+</section>
+<section aria-labelledby="architecture-title" class="section section--cream">
+<div class="container">
+<div class="section-heading section-heading--center reveal">
+<div class="eyebrow"><span></span> Product architecture</div>
+<h2 id="architecture-title">Connected from screen to model to database.</h2>
+<p>The backend orchestrates every step — from a user's input to AI inference, nutrition calculations, secure storage, and the updated result shown inside the application.</p>
+</div>
+<div aria-label="CALY product architecture flow" class="architecture-map reveal">
+<section class="architecture-lane architecture-lane--experience">
+<span class="architecture-lane__label">01 · Experience</span>
+<article class="architecture-node architecture-node--primary">
+<div class="architecture-node__icon"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M8 2h8a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Zm2 3h4M10 19h4"></path></svg></div>
+<div><span>User layer</span><h3>Flutter Mobile App</h3><p>Profile setup, meal capture, text logging, favorites, and the daily dashboard.</p></div>
+</article>
+</section>
+<div aria-hidden="true" class="architecture-connector"><span></span><b>Request</b></div>
+<section class="architecture-lane architecture-lane--orchestration">
+<span class="architecture-lane__label">02 · Orchestration</span>
+<article class="architecture-node architecture-node--core">
+<img alt="" aria-hidden="true" src="assets/brand/caly-icon.svg"/>
+<div><span>Central service layer</span><h3>FastAPI Backend</h3><p>Validates requests and coordinates the complete nutrition workflow.</p></div>
+</article>
+<div class="architecture-services"><span>Authentication</span><span>User profiles</span><span>Meal workflows</span><span>Nutrition logic</span></div>
+</section>
+<div aria-hidden="true" class="architecture-connector"><span></span><b>Orchestrate</b></div>
+<section class="architecture-lane architecture-lane--systems">
+<span class="architecture-lane__label">03 · Intelligence &amp; Data</span>
+<div class="architecture-system-stack">
+<article class="architecture-node architecture-node--compact">
+<div class="architecture-node__icon architecture-node__icon--orange"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 7h16v10H4zM8 3v4m8-4v4M8 17v4m8-4v4M1 10h3m16 0h3M1 14h3m16 0h3"></path></svg></div>
+<div><span>AI services</span><h3>Vision, Language &amp; Recommendations</h3><p>YOLO, Depth Anything V2, Qwen 2.5, and Gemini.</p></div>
+</article>
+<article class="architecture-node architecture-node--compact">
+<div class="architecture-node__icon architecture-node__icon--cream"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3c4.4 0 8 1.3 8 3s-3.6 3-8 3-8-1.3-8-3 3.6-3 8-3Zm-8 3v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6m-16 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"></path></svg></div>
+<div><span>Data layer</span><h3>Supabase &amp; Cloud Storage</h3><p>Identity, profiles, meals, nutrition records, and uploaded images.</p></div>
+</article>
+</div>
+</section>
+</div>
+<div class="architecture-return reveal"><span class="architecture-return__line"></span><p><strong>Structured result returns to the app:</strong> detected foods, estimated grams, nutritional values, daily progress, and personalized guidance.</p></div>
+<div class="stack-list stack-list--center reveal"><span>Flutter &amp; Dart</span><span>FastAPI</span><span>Supabase PostgreSQL</span><span>Supabase Auth</span><span>Cloudinary</span><span>Hugging Face</span><span>Gemini</span><span>Docker</span></div>
+</div></section>
+<section aria-labelledby="team-title" class="section" id="team">
+<div class="container">
+<div class="section-heading section-heading--split reveal">
+<div>
+<div class="eyebrow"><span></span> Meet the team</div>
+<h2 id="team-title">The people behind CALY.</h2>
+</div>
+<p>CALY is our graduation project for the 2025–2026 academic year, developed by six students from the Statistics &amp; Computer Science Program, Department of Mathematics, Faculty of Science, Capital University.</p>
+</div>
+<div class="graduation-project-banner reveal">
+<div><span>Graduation Project</span><strong>Academic Year 2025–2026</strong></div>
+<p>A multidisciplinary system combining Computer Vision, Natural Language Processing, recommendation intelligence, mobile development, backend engineering, and database design.</p>
+</div><div class="team-roster"><article class="team-member reveal">
+<span class="team-member__number">01</span>
+<div class="team-member__identity">
+<div><h3>Kareem Adel</h3></div>
+</div>
+<a aria-label="LinkedIn profile for Kareem Adel (opens in a new tab)" class="linkedin-link linkedin-link--icon" href="https://www.linkedin.com/in/kareem-adel-mostafa/" rel="noopener noreferrer" target="_blank"><span>in</span><b>LinkedIn</b></a>
+</article><article class="team-member reveal">
+<span class="team-member__number">02</span>
+<div class="team-member__identity">
+<div><h3>Mahmoud Ahmed</h3></div>
+</div>
+<a aria-label="LinkedIn profile for Mahmoud Ahmed (opens in a new tab)" class="linkedin-link linkedin-link--icon" href="https://www.linkedin.com/in/mahmoud-ahmed-22505527a/" rel="noopener noreferrer" target="_blank"><span>in</span><b>LinkedIn</b></a>
+</article><article class="team-member reveal">
+<span class="team-member__number">03</span>
+<div class="team-member__identity">
+<div><h3>Mohamed Hossam</h3></div>
+</div>
+<a aria-label="LinkedIn profile for Mohamed Hossam (opens in a new tab)" class="linkedin-link linkedin-link--icon" href="https://www.linkedin.com/in/mohamed-hossam-elgammal/" rel="noopener noreferrer" target="_blank"><span>in</span><b>LinkedIn</b></a>
+</article><article class="team-member reveal">
+<span class="team-member__number">04</span>
+<div class="team-member__identity">
+<div><h3>Rawan Mohamed</h3></div>
+</div>
+<a aria-label="LinkedIn profile for Rawan Mohamed (opens in a new tab)" class="linkedin-link linkedin-link--icon" href="https://www.linkedin.com/in/rawan-anwar-181250322/" rel="noopener noreferrer" target="_blank"><span>in</span><b>LinkedIn</b></a>
+</article><article class="team-member reveal">
+<span class="team-member__number">05</span>
+<div class="team-member__identity">
+<div><h3>Rwaa Mohamed</h3></div>
+</div>
+<a aria-label="LinkedIn profile for Rwaa Mohamed (opens in a new tab)" class="linkedin-link linkedin-link--icon" href="https://www.linkedin.com/in/rwaa-mohamed-a028372b1/" rel="noopener noreferrer" target="_blank"><span>in</span><b>LinkedIn</b></a>
+</article><article class="team-member reveal">
+<span class="team-member__number">06</span>
+<div class="team-member__identity">
+<div><h3>Salma Ramadan</h3></div>
+</div>
+<a aria-label="LinkedIn profile for Salma Ramadan (opens in a new tab)" class="linkedin-link linkedin-link--icon" href="https://www.linkedin.com/in/salma-ramadan-9b53b5320/" rel="noopener noreferrer" target="_blank"><span>in</span><b>LinkedIn</b></a>
+</article></div>
+<div class="supervisor-card reveal">
+<img alt="CALY icon" src="assets/brand/caly-icon.svg"/>
+<div><span>Project Supervisor</span><h3>Prof. Amany E. Aly</h3><p>Professor of Mathematical Statistics</p></div>
+</div>
+</div>
+</section>
+<section aria-labelledby="download-title" class="section download-section" id="download">
+<div class="container download-card reveal">
+<div aria-label="CALY app icon" class="beta-app-visual">
+<div class="beta-app-icon"><img alt="CALY Android app icon" src="assets/brand/caly-icon.svg"/></div>
+</div>
+<div class="download-card__copy">
+<div class="eyebrow eyebrow--light"><span></span> Closed beta</div>
+<h2 id="download-title">Experience CALY on Android.</h2>
+<p>Download the beta APK, create your personalized nutrition plan, and explore CALY's meal logging and daily tracking experience.</p>
+<div class="download-notes">
+<span>Android APK</span><span>Research beta</span><span>Internet required</span>
+</div>
+<a class="button button--cream" download href="assets/downloads/Caly%20v1.7.apk">
+<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3v12m0 0 5-5m-5 5-5-5M5 21h14"></path></svg>
+            Download CALY Beta
+          </a>
+<small>CALY is a research prototype for nutritional tracking and is not a substitute for professional medical advice.</small>
+</div>
+</div>
+</section>
+</main>
+<footer class="site-footer">
+<div class="container footer-grid">
+<div class="footer-brand"><img alt="CALY" src="assets/brand/caly-logo.svg"/><p>Snap. Track. Shape Your Future.</p></div>
+<div><strong>Explore</strong><a href="#overview">Overview</a><a href="#technology">Technology</a><a href="#results">Results</a></div>
+<div><strong>Project</strong><a href="#app">Mobile App</a><a href="#team">Team</a><a href="#download">Beta APK</a></div>
+<div><strong>Graduation Project</strong><p>Statistics &amp; Computer Science Program<br/>Academic Year 2025–2026</p></div>
+</div>
+<div class="container footer-bottom"><span>© 2026 CALY Team. All rights reserved.</span><a class="back-to-top" href="#top">Back to top ↑</a></div>
+</footer>
+<div aria-label="Figure preview" aria-modal="true" class="lightbox" hidden="" role="dialog">
+<div class="lightbox__toolbar">
+<button aria-label="Zoom out" class="lightbox__action" data-action="zoom-out" type="button">−</button>
+<button aria-label="Reset zoom" class="lightbox__action" data-action="zoom-reset" type="button">100%</button>
+<button aria-label="Zoom in" class="lightbox__action" data-action="zoom-in" type="button">+</button>
+</div>
+<button aria-label="Close preview" class="lightbox__close" type="button">×</button>
+<div class="lightbox__viewport">
+<div class="lightbox__canvas">
+<img alt="Expanded CALY project figure"/>
+</div>
+</div>
+</div>
+<script src="js/app.js"></script>
+</body>
+</html>
