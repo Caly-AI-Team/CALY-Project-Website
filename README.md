@@ -1,4 +1,4 @@
-# CALY Project Website — V4
+# CALY Project Website
 
 This version includes the requested design refinements after review.
 
@@ -29,8 +29,6 @@ assets/images/hero-image.png
 You can keep the same filename for the easiest workflow.
 
 ## APK location
-
-Put the beta APK here:
 
 ```text
 assets/downloads/CALY-Beta.apk
